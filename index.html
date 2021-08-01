@@ -74,7 +74,10 @@
 
                 // initialise the latency manager
                 const latencymanager = THEOplayer.initializeLatencyManager(player, appConfig);
-                latencymanager.configure (appConfig.config[0]);
+            
+                setTimeout(() => {
+                    latencymanager.configure (appConfig.config[0]);
+                }, 2000);
         </script>
     </body>
 </html>
