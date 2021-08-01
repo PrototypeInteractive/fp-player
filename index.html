@@ -9,6 +9,7 @@
             type="text/javascript"
             src="https://cdn.myth.theoplayer.com/02196505-e486-4b75-b1da-fca6d688215b/THEOplayer.js"
         ></script>
+        <script type='text/javascript' src='latencymanager.js'></script> <!-- adds the Latency manager JS file -->
         <link
             rel="stylesheet"
             type="text/css"
@@ -44,13 +45,33 @@
                         src:
                             'https://fp-streaming-257318123.b-cdn.net/streams/4b51da388de0f10a418b3ebff33812c9_adaptive.m3u8',
                         type: 'application/x-mpegurl',
-                        lowLatency: true
+                        lowLatency: true,
+                        liveOffset : 1.0   //The offset in seconds used to determine the live point. This live point is the end of the manifest minus the provided offset.
                     }
                 ]
             };
 
             player.autoplay = true;
             player.preload = 'auto';
+            
+              // using JSON syntax, create an array with the stated objects, and initialise the appConfig variable
+              var appConfig = {
+                "config" : [{
+                "targetlatency" : 2000,
+                "seekwindow"    : 1000,
+                "latencywindow" : 100,
+                "encoderlatency" : 0,
+                "useencodertime" : false,
+                "interval"      : 40,
+                "fireupdate"    : false,
+                "ratechange"    : 0.08,
+                "sync"          : true,
+                "disableonpause" : false,
+                "timeserver": "https://time.akamai.com/?iso&ms"}]};
+
+                // initialise the latency manager
+                latencymanager = THEOplayer.initializeLatencyManager(player, appConfig);
+                latencymanager.configure (appConfig.config[0]);
         </script>
     </body>
 </html>
