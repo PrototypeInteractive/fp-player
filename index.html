@@ -73,10 +73,8 @@
                 "timeserver": "https://time.akamai.com/?iso&ms"}]};
 
                 // initialise the latency manager
-                setTimeout(() => {
-                    latencymanager = THEOplayer.initializeLatencyManager(player, appConfig);
-                    latencymanager.configure (appConfig.config[0]);
-                }, 1000);
+                const latencymanager = THEOplayer.initializeLatencyManager(player, appConfig);
+                latencymanager.configure (appConfig.config[0]);
         </script>
     </body>
 </html>
