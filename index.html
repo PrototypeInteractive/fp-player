@@ -59,7 +59,6 @@
             
               // using JSON syntax, create an array with the stated objects, and initialise the appConfig variable
               var appConfig = {
-                "config" : [{
                 "targetlatency" : 2000,
                 "seekwindow"    : 1000,
                 "latencywindow" : 100,
@@ -70,15 +69,11 @@
                 "ratechange"    : 0.08,
                 "sync"          : true,
                 "disableonpause" : false,
-                "timeserver": "https://time.akamai.com/?iso&ms"}]};
+                "timeserver": "https://time.akamai.com/?iso&ms"
+              };
 
                 // initialise the latency manager
-                const latencymanager = THEOplayer.initializeLatencyManager(player, appConfig);
-            
-                setTimeout(() => {
-                    console.log('XXX', latencymanager);
-                    latencymanager.configure (appConfig.config[0]);
-                }, 5000);
+                THEOplayer.initializeLatencyManager(player, appConfig);
         </script>
     </body>
 </html>
